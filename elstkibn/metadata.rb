@@ -17,3 +17,6 @@ version '0.1.0'
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/elstkibn' if respond_to?(:source_url)
+depends 'java', '~> 1.50.0'
+depends 'elasticsearch', '~> 3.2.1'
+depends 'kibana5', '~> 1.1.2'

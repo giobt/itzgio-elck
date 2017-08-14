@@ -19,5 +19,5 @@ issues_url 'https://github.com/giobt/itzgio-elck/issues'
 #
 # source_url 'https://github.com/<insert_org_here>/logscass' if respond_to?(:source_url)
 
-cookbook 'cassandra-dse', '~> 4.4.0'
-cookbook 'logstash', '~> 1.0.0'
+depends 'cassandra-dse', '~> 4.4.0'
+depends 'logstash', '~> 1.0.0'
