@@ -1,2 +1,2 @@
-node['cassandra']['install_method'] = 'tarball'
-node['cassandra']['cluster_name'] = 'itzgio-elck'
+default['cassandra']['install_method'] = 'tarball'
+default['cassandra']['cluster_name'] = 'itzgio-elck'
