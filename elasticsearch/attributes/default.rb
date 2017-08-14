@@ -1,10 +1,10 @@
 # empty settings (populate these for the elasticsearch::default recipe)
 # see the resources or README.md to see what you can pass here.
-default['elasticsearch']['user'] = {}
-default['elasticsearch']['install'] = {}
-default['elasticsearch']['configure'] = {}
-default['elasticsearch']['service'] = {}
-default['elasticsearch']['plugin'] = {}
+default['elasticsearch']['user'] = 'elasticsearch'
+default['elasticsearch']['install'] = 'elasticsearch'
+default['elasticsearch']['configure'] = 'elasticsearch'
+default['elasticsearch']['service'] = 'elasticsearch'
+default['elasticsearch']['plugin'] = 'x-pack'
 
 # platform_family keyed download URLs
 default['elasticsearch']['download_urls'] = {
