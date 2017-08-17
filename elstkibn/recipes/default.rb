@@ -32,7 +32,9 @@ template '/etc/elasticsearch/elasticsearch.yml' do
     source 'elasticsearch.yml.erb'
     mode '755'
     owner 'root'
-    variables ( :private_ip => private_ip)
+    variables ({
+            private_ip: private_ip
+        })
 end
 
 # Configure elasticsearch service to be enabled at boot and start it
