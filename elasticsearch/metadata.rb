@@ -1,9 +1,9 @@
-name 'elstkibn'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+name 'elasticsearch'
+maintainer 'Giorgio Balconi'
+maintainer_email 'gabalconi@gmail.com'
 license 'all_rights'
-description 'Installs/Configures elstkibn'
-long_description 'Installs/Configures elstkibn'
+description 'Installs/Configures elasticsearch'
+long_description 'Installs/Configures elasticsearch'
 version '0.1.0'
 
 # The `issues_url` points to the location where issues for this cookbook are
