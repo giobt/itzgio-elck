@@ -1,46 +1,44 @@
-# Encoding: utf-8
 #
-# Cookbook Name:: elasticsearch
+# Cookbook:: elasticsearch
 # Recipe:: default
 #
+# Copyright:: 2017, Giorgio Balconi, All Rights Reserved.
 
-include_recipe 'chef-sugar'
+# Variable declaration area
+instance = search("aws_opsworks_instance").first
+private_ip = instance['private_ip']
 
-# see README.md and test/fixtures/cookbooks for more examples!
-elasticsearch_user 'elasticsearch' do
-  node['elasticsearch']['user'].each do |key, value|
-    # Skip nils, use false if you want to disable something.
-    send(key, value) unless value.nil?
-  end
+# Create RPM repository file in /etc/yum.repos.d/
+yum_repository 'elasticsearch-5.x' do
+  description "Elasticsearch repository for 5.x packages"
+  baseurl "https://artifacts.elastic.co/packages/5.x/yum"
+  gpgcheck true
+  gpgkey 'https://artifacts.elastic.co/GPG-KEY-elasticsearch'
+  enabled true
+  action :create
 end
 
-elasticsearch_install 'elasticsearch' do
-  node['elasticsearch']['install'].each do |key, value|
-    # Skip nils, use false if you want to disable something.
-    send(key, value) unless value.nil?
-  end
+# Installing from the RPM repository
+yum_package 'elasticsearch'
+
+# Configure heap size in jvm.options
+template '/etc/elasticsearch/jvm.options' do
+    source 'jvm.options.erb'
+    mode '755'
+    owner 'root'
 end
 
-elasticsearch_configure 'elasticsearch' do
-  node['elasticsearch']['configure'].each do |key, value|
-    # Skip nils, use false if you want to disable something.
-    send(key, value) unless value.nil?
-  end
+# Configure heap size in /etc/sysconfig/elasticsearch
+template '/etc/elasticsearch/elasticsearch.yml' do
+    source 'elasticsearch.yml.erb'
+    mode '755'
+    owner 'root'
+    variables ({
+            private_ip: private_ip
+        })
 end
 
-elasticsearch_service 'elasticsearch' do
-  node['elasticsearch']['service'].each do |key, value|
-    # Skip nils, use false if you want to disable something.
-    send(key, value) unless value.nil?
-  end
-end
-
-# by default, no plugins
-node['elasticsearch']['plugin'].each do |plugin_name, plugin_value|
-  elasticsearch_plugin plugin_name do
-    plugin_value.each do |key, value|
-      # Skip nils, use false if you want to disable something.
-      send(key, value) unless value.nil?
-    end
-  end
+# Configure elasticsearch service to be enabled at boot and start it
+service "elasticsearch" do
+  action [:enable, :start]
 end
