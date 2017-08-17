@@ -19,5 +19,5 @@ yum_package 'elasticsearch'
 
 # Configure elasticsearch service to be enabled at boot and start it
 service "elasticsearch" do
-  action [:enabled, :start]
+  action [:enable, :start]
 end
