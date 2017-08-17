@@ -4,6 +4,9 @@
 #
 # Copyright:: 2017, Giorgio Balconi, All Rights Reserved.
 
+# Variable declaration area
+private_ip = node["opsworks"]["instance"]["private_ip"]
+
 # Create RPM repository file in /etc/yum.repos.d/
 yum_repository 'elasticsearch-5.x' do
   description "Elasticsearch repository for 5.x packages"
@@ -29,9 +32,7 @@ template '/etc/elasticsearch/elasticsearch.yml' do
     source 'elasticsearch.yml.erb'
     mode '755'
     owner 'root'
-    variables ({
-            private_ip: node["opsworks"]["instance"]["private_ip"]
-        })
+    variables ( :private_ip => private_ip)
 end
 
 # Configure elasticsearch service to be enabled at boot and start it
