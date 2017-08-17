@@ -6,7 +6,7 @@
 
 # Variable declaration area
 instance = search("aws_opsworks_instance").first
-private_ip = {instance['private_ip']}
+private_ip = instance['private_ip']
 
 # Create RPM repository file in /etc/yum.repos.d/
 yum_repository 'elasticsearch-5.x' do
