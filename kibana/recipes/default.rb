@@ -16,3 +16,8 @@ end
 
 # Installing from the RPM repository
 yum_package 'kibana'
+
+# Configure kibana service to be enabled at boot and start it
+service "kibana" do
+  action [:enable, :start]
+end
