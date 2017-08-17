@@ -21,8 +21,8 @@ end
 # Installing from the RPM repository
 yum_package 'elasticsearch'
 
-# Configure heap size in /etc/sysconfig/elasticsearch
-template '/etc/sysconfig/elasticsearch' do
+# Configure heap size in jvm.options
+template '/etc/elasticsearch/jvm.options' do
     source 'elasticsearch.erb'
     mode '755'
     owner 'root'
