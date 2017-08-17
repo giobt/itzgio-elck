@@ -1,6 +1,6 @@
 default['systemd']['units_dir'] = '/etc/systemd/system'
 
-default['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
 default['java']['install_flavor'] = 'oracle'
 default['java']['set_default'] = true
 default['java']['oracle']['accept_oracle_download_terms'] = true
