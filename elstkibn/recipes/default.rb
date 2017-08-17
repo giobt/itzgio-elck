@@ -23,7 +23,7 @@ yum_package 'elasticsearch'
 
 # Configure heap size in jvm.options
 template '/etc/elasticsearch/jvm.options' do
-    source 'elasticsearch.erb'
+    source 'jvm.options.erb'
     mode '755'
     owner 'root'
 end
