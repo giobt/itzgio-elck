@@ -5,9 +5,9 @@
 # Copyright:: 2017, Giorgio Balconi, All Rights Reserved.
 
 # Variable declaration area
-private_ips = []
+seeds = ""
 search("aws_opsworks_instance").each do |instance|
-    private_ips.push(instance['private_ip'])
+    seeds = seeds + instance['private_ip'] + ","
 end
 
 instance = search("aws_opsworks_instance").first
@@ -32,7 +32,8 @@ template '/etc/cassandra/conf/cassandra.yaml' do
     mode '755'
     owner 'root'
     variables ({
-            private_ip: private_ip
+            private_ip: private_ip,
+            seeds: seeds
         })
 end
 
