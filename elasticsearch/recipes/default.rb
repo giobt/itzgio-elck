@@ -31,7 +31,7 @@ end
 # Configure heap size in /etc/sysconfig/elasticsearch
 template '/etc/elasticsearch/elasticsearch.yml' do
     source 'elasticsearch.yml.erb'
-    mode '755'
+    mode '0755'
     owner 'root'
     variables ({
             private_ip: private_ip
