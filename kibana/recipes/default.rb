@@ -4,6 +4,8 @@
 #
 # Copyright:: 2017, Giorgio Balconi, All Rights Reserved.
 
+# Variable declaration area
+instance = search("aws_opsworks_instance").first
 private_ip = instance['private_ip']
 
 # Create RPM repository file in /etc/yum.repos.d/
